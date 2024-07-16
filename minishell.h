@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 18:25:51 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:09:20 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ int								ft_strlen(char const *str);
 char							*copy(char *s);
 t_env							*ft_lstnew_env(void);
 void							ft_lstadd_back_env(t_env **lst, t_env *new);
-
+void							*ft_memset(void *s, int c, size_t n);
+char							*ft_strdup(const char *s);
+void							*ft_calloc(size_t nmemb, size_t size);
 /*
 * Utils ft_strjoin
 */

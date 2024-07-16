@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:14:13 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 18:08:59 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:09:36 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,22 @@ char	*copy(char *s)
 	return (tmp);
 }
 
+char	*ft_strdup(const char *s)
+{
+	char		*str;
+	int			i;
+
+	i = 0;
+	str = NULL;
+	str = ft_calloc(sizeof(char), ft_strlen(s) + 1);
+	if (str)
+	{
+		while (s[i])
+		{
+			str[i] = s[i];
+			i++;
+		}
+		str[i] = '\0';
+	}
+	return (str);
+}

@@ -6,6 +6,7 @@ MY_SOURCES= src/prompt/minishell.c \
 			src/init/init_env.c \
 			src/init/update_shlvl.c \
 			utils/utils.c \
+			utils/utils_two.c \
 			utils/print.c \
 			utils/ft_strjoin_utils.c \
 			utils/lstnew_env.c \
