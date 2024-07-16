@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 19:09:20 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:14:30 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_vars
 	pid_t			child;
 	pid_t			last_child;
 	//t_redirection	**redirection;
-	//t_bool			exit;
+	int				exit;
 	int				nb_cmd;
 	int				cmd_index;
 	char			**path;
@@ -46,7 +46,7 @@ typedef struct s_vars
 	char			**full_cmd;
 	int				pipe_1[2];
 	int				pipe_2[2];
-	char			**env;
+	//char			**env;
 	int				exit_code;
 	int				exit_code_signal;
 	int				*pids;
@@ -54,9 +54,9 @@ typedef struct s_vars
 
 typedef struct s_env
 {
-	char			*var_name;
-	char			*value;
-	char			*full_path;
+	char			*env_name;
+	char			*env_value;
+	char			*env_var;
 	//t_bool			hide;
 	struct s_env	*next;
 }	t_env;
@@ -74,6 +74,7 @@ void							init_vars(t_vars *vars);
 
 void							run_signals(void);
 void							ft_ctrl_c(int signal);
+void							set_interactive_mode(int set);
 
 /*
 * Utils
@@ -84,11 +85,14 @@ int								ft_strcmp(char *s1, char *s2);
 int								ft_atoi(const char *str);
 int								ft_strlen(char const *str);
 char							*copy(char *s);
-t_env							*ft_lstnew_env(void);
-void							ft_lstadd_back_env(t_env **lst, t_env *new);
 void							*ft_memset(void *s, int c, size_t n);
 char							*ft_strdup(const char *s);
 void							*ft_calloc(size_t nmemb, size_t size);
+
+t_env							*ft_lstnew_env(void);
+void							ft_lstadd_back_env(t_env **lst, t_env *new);
+void							ft_lstclear_env(t_env **lst);
+
 /*
 * Utils ft_strjoin
 */
@@ -102,5 +106,22 @@ char							*ft_strjoin_mod(char *s1, char *s2);
 */
 
 char							*update_shlvl(int shlvl);
+
+
+/*
+* free
+*/
+
+
+void							free_exit(t_env **env, t_vars *vars);
+
+/*
+* Test utils
+*/
+
+void							print_linked_lst_env(t_env *env);
+
+
+
 
 #endif

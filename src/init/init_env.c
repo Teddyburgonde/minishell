@@ -6,24 +6,24 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:12:37 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 19:08:22 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:16:47 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	construct_full_path(t_env *new, char **envp, int i)
+static void	build_env_var(t_env *new, char **envp, int i)
 {
 	char	*tmp;
 
 	tmp = NULL;
-	if (ft_strcmp(new->var_name, "SHLVL") == 0)
+	if (ft_strcmp(new->env_name, "SHLVL") == 0)
 	{
-		tmp = ft_strjoin(new->var_name, "=");
-		new->full_path = ft_strjoin_mod(tmp, new->value);
+		tmp = ft_strjoin(new->env_name, "=");
+		new->env_var = ft_strjoin_mod(tmp, new->env_value);
 	}
 	else
-		new->full_path = copy(envp[i]);
+		new->env_var = ft_strdup(envp[i]);
 }
 
 static char	*get_name(char *line, int j)
@@ -41,32 +41,23 @@ static char	*get_name(char *line, int j)
 	i = 0;
 	while (i != j)
 	{
-		tab[i] = line[i]; 	// voir henry pour strdup ???
-							// ne pas oublier de free si strdup 
+		tab[i] = line[i];
 		i++;
 	}
 	tab[i] = 0;
 	return (tab);
 }
 
-// static void	shlvl_variable_management(t_env **new, char **envp)
-// {
-// 	if (ft_strcmp((*new)->var_name, "SHLVL") == 0)
-// 		(*new)->value = update_shlvl(ft_atoi(&envp[i][j + 1]) + 1);
-// 	else
-// 		(*new)->value = ft_strdup(&envp[i][j + 1]);
-// }
-
 static void	create_and_initialize_new_element_list(t_env **new,
 	char *envp, int j)
 {
 	*new = ft_lstnew_env();
-	(*new)->var_name = get_name(envp, j);
-	if (ft_strcmp((*new)->var_name, "SHLVL") == 0)
-		(*new)->value = update_shlvl(ft_atoi(&envp[j + 1]) + 1);
+	(*new)->env_name = get_name(envp, j);
+	if (ft_strcmp((*new)->env_name, "SHLVL") == 0)
+		(*new)->env_value = update_shlvl(ft_atoi(&envp[j + 1]) + 1);
 	//(*new)->hide = FALSE;
 	else
-		(*new)->value = ft_strdup(&envp[j + 1]);
+		(*new)->env_value = ft_strdup(&envp[j + 1]);
 }
 
 void	init_env(t_env **env, char **envp)
@@ -78,7 +69,7 @@ void	init_env(t_env **env, char **envp)
 	if (!envp || !envp[0])
 	{
 		*env = NULL;
-		ft_putstr_fd("envp doesn't exist\n", 2);
+		ft_putstr_fd("Envp doesn't exist\n", 2);
 		return ;
 	}
 	i = 0;
@@ -87,9 +78,8 @@ void	init_env(t_env **env, char **envp)
 		j = 0;
 		while (envp[i][j] != '=')
 			j++;
-		create_and_initialize_new_element_list(&new, &envp[i][j], j);
-		//shlvl_variable_management(&new, &envp[i][j]);
-		construct_full_path(new, envp, i);
+		create_and_initialize_new_element_list(&new, envp[i], j);
+		build_env_var(new, envp, i);
 		ft_lstadd_back_env(env, new);
 		i++;
 	}

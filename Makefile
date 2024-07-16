@@ -10,7 +10,11 @@ MY_SOURCES= src/prompt/minishell.c \
 			utils/print.c \
 			utils/ft_strjoin_utils.c \
 			utils/lstnew_env.c \
-			utils/lst_add_back.c 
+			utils/lst_add_back.c \
+			utils/lstclear_env.c  \
+			utils/free.c 
+
+MY_SOURCES+= utils/test_utils.c  
 
 MY_OBJECTS=$(MY_SOURCES:.c=.o)
 

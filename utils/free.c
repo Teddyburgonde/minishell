@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_vars.c                                        :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 17:10:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 20:05:41 by tebandam         ###   ########.fr       */
+/*   Created: 2024/07/16 20:13:38 by tebandam          #+#    #+#             */
+/*   Updated: 2024/07/16 20:13:51 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	init_vars(t_vars *vars)
+void	free_exit(t_env **env, t_vars *vars)
 {
-	//vars->env = NULL;
-	vars->exit = 0;
-	vars->exit_code = 0;
-	vars->exit_code_signal = 0;
+	int	exit_code;
+
+	exit_code = vars->exit_code;
+	ft_lstclear_env(env);
+	free(vars);
+	exit(exit_code);
 }
