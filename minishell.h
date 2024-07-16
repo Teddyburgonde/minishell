@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 20:14:30 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:09:42 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,34 @@
 
 extern int	g_sig;
 
+typedef struct s_redirection t_redirection;
+typedef struct s_redirection{
+
+	t_redirection *next;	
+}	t_redirection;
+
+
+typedef struct s_argument t_argument;
+typedef struct s_argument{
+
+	t_argument *next;	
+}	t_argument;
+
+typedef struct s_segment t_segment;
+typedef struct s_segment{
+	
+	t_argument *arguments;
+	t_redirection *redirections;
+	t_segment *next;	
+}	t_segment;
+
+
+
+typedef struct s_command_line
+{
+	t_segment *segments;
+		
+}	t_command_line;
 
 typedef struct s_vars
 {
