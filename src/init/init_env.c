@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:12:37 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 20:16:47 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:48:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	create_and_initialize_new_element_list(t_env **new,
 		(*new)->env_value = ft_strdup(&envp[j + 1]);
 }
 
-void	init_env(t_env **env, char **envp)
+int	init_env(t_env **env, char **envp)
 {
 	t_env	*new;
 	int		i;
@@ -70,7 +70,7 @@ void	init_env(t_env **env, char **envp)
 	{
 		*env = NULL;
 		ft_putstr_fd("Envp doesn't exist\n", 2);
-		return ;
+		return (1);
 	}
 	i = 0;
 	while (envp[i])
@@ -83,4 +83,5 @@ void	init_env(t_env **env, char **envp)
 		ft_lstadd_back_env(env, new);
 		i++;
 	}
+	return (0);
 }

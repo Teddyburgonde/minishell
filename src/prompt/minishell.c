@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 09:26:24 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:41:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,95 +14,46 @@
 
 int	g_sig = 0;
 
-// function initialisation des structures 
-// (malloc, char * NULL et pointer NULL) regarder la valeur de retour
-//! initialize t_segment finish !
-//! initialize t_argument finish !
-//! initialize t_redirection finish !
-//! initialize t_command_line finish !
-
-// function si allocation echoue message error , free, exit
-//! fonctions pour liberer la memoire et struct finish !
-
-
-// reprendre ft_strcspn 
-//! add function ft_strcspn finish !
-
-// ft_lstnew
-// ft_lstdel_one
-// ft_lstaddback
-// ft_lstlast ( si besoin )
-// ft_lstsize 
-
+// mettre function si allocation echoue message error , free, exit
 
 // function print command_line
 
-static int	ft_readline(t_env **env, t_vars *vars)
+static void	ft_readline(t_command_data *command_data)
 {
-	char							*command_line;
+	char							*line;
 
-	command_line = NULL;
 	while (1)
 	{
-		if (vars->exit == 1)
-			free_exit(env, vars);
-		if (command_line)
-			free(command_line);
-		command_line = NULL;
-		set_interactive_mode(1);
-		command_line = readline("minishell ~ ");
-		set_interactive_mode(2);
-		if (!command_line)
+		line = readline("minishell ~ ");
+		if (!line)
 		{
 			ft_putstr_fd("exit\n", 2);
-			if (command_line)
-				free(command_line);
+			// function free_all
 			break ;
 		}
+		parse_command_line(command_data, line);
+		if (line)
+			free(line);
 		//command_line = verif_command_line(command_line, env, vars);
 	}
-	return (vars->exit_code);
-}
-
-int	run_readline(t_env *env, t_vars *vars)
-{
-	int	exit;
-
-	exit = ft_readline(&env, vars);
-	if (exit == 1)
-	{
-		ft_lstclear_env(&env);
-		free(vars);
-		return (1);
-	}
-	return (exit);
 }
 
 int	main(int ac, char **av, char *envp[])
 {
-	int		exit;
-	t_env	*env;
-	t_vars	*vars;
+	t_command_data	command_data;
+	command_data.env = NULL;
+	command_data.segments = NULL;
 
 	(void)av;
-	vars = malloc(sizeof(t_vars));
-	if (!vars)
-		return (1);
-	env = NULL;
-	init_vars(vars);
 	if (ac != 1)
 	{
 		ft_putstr_fd("Error: Too much arguments\n", 2);
-		free(vars);
 		return (1);
 	}
-	init_env(&env, envp);
-	//print_linked_lst_env(env);
-	if (env == NULL)
+	if(init_env(&command_data.env, envp) == 1)
 		return (1);
+	command_data.exit_code = 0;
 	run_signals();
-	exit = run_readline(env, vars);
-	// ft_lstclear_env(&env);
-	// free(vars);
-	return (exit);
+	ft_readline(&command_data);
+	return (command_data.exit_code);
 }

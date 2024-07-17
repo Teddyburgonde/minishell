@@ -2,10 +2,9 @@ NAME=minishell
 
 MY_SOURCES= src/prompt/minishell.c \
 			src/signal/signal.c \
-			src/init/init_vars.c \
 			src/init/init_env.c \
 			src/init/update_shlvl.c \
-			src/init/initialize.c \
+			src/parsing/parse_command_line.c \
 			utils/free_struct.c \
 			utils/utils.c \
 			utils/utils_two.c \
@@ -14,8 +13,7 @@ MY_SOURCES= src/prompt/minishell.c \
 			utils/lstnew_env.c \
 			utils/lst_add_back.c \
 			utils/lstclear_env.c  \
-			utils/free.c \
-			utils/lst_new.c
+			utils/lst_new.c 
 
 MY_SOURCES+= utils/test_utils.c  
 
