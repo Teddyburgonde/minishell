@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 21:26:57 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 07:49:31 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_redirection{
 	e_redirection_type redirection_type;
 	t_redirection *next;	
 }	t_redirection;
-
 
 typedef struct s_argument t_argument;
 typedef struct s_argument{
@@ -144,7 +143,10 @@ char							*ft_strjoin_mod(char *s1, char *s2);
 */
 
 char							*update_shlvl(int shlvl);
-
+t_redirection					*initialize_redirection(void);
+t_argument						*initialize_argument(void);
+t_segment						*initialize_segment(void);
+t_command_line					*initialize_command_line(void);
 
 /*
 * free

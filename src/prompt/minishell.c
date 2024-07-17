@@ -6,14 +6,21 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 21:34:09 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 07:34:18 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+int	g_sig = 0;
 
 // function initialisation des structures ( malloc, char * NULL et pointer NULL) regarder la valeur de retour 
+
+//! initialize t_segment finish 
+//! initialize t_argument finish
+//! initialize t_redirection finish
+//! initialize t_command_line finish 
+
 // function si allocation echoue message error , free, exit
 // reprendre ft_strcspn 
 // ft_lstnew
@@ -22,9 +29,6 @@
 // ft_lstlast ( si besoin )
 // ft_lstsize 
 // function print command_line
-
-
-int	g_sig = 0;
 
 static int	ft_readline(t_env **env, t_vars *vars)
 {
