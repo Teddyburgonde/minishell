@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 21:09:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:26:57 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,20 @@
 
 extern int	g_sig;
 
+typedef enum type
+{
+	REDIRECTION_OUTFILE,
+	REDIRECTION_INFILE,
+	REDIRECTION_APPEND,
+	REDIRECTION_HEREDOC,
+	UNASIGNED
+}	e_redirection_type;
+
 typedef struct s_redirection t_redirection;
 typedef struct s_redirection{
 
+	char *content_to_expand;
+	e_redirection_type redirection_type;
 	t_redirection *next;	
 }	t_redirection;
 
@@ -42,6 +53,7 @@ typedef struct s_redirection{
 typedef struct s_argument t_argument;
 typedef struct s_argument{
 
+	char *content_to_expand;
 	t_argument *next;	
 }	t_argument;
 
@@ -52,8 +64,6 @@ typedef struct s_segment{
 	t_redirection *redirections;
 	t_segment *next;	
 }	t_segment;
-
-
 
 typedef struct s_command_line
 {
