@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 07:34:18 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 09:08:22 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 int	g_sig = 0;
 
-// function initialisation des structures ( malloc, char * NULL et pointer NULL) regarder la valeur de retour 
-
-//! initialize t_segment finish 
-//! initialize t_argument finish
-//! initialize t_redirection finish
-//! initialize t_command_line finish 
+// function initialisation des structures 
+// (malloc, char * NULL et pointer NULL) regarder la valeur de retour
+//! initialize t_segment finish !
+//! initialize t_argument finish !
+//! initialize t_redirection finish !
+//! initialize t_command_line finish !
 
 // function si allocation echoue message error , free, exit
+//! fonctions pour liberer la memoire et struct finish !
+
+
 // reprendre ft_strcspn 
+//! add function ft_strcspn finish !
+
+
 // ft_lstnew
 // ft_lstdel_one
 // ft_lstaddback
@@ -94,11 +100,8 @@ int	main(int ac, char **av, char *envp[])
 	if (env == NULL)
 		return (1);
 	run_signals();
-	
 	exit = run_readline(env, vars);
 	// ft_lstclear_env(&env);
 	// free(vars);
 	return (exit);
 }
-
-

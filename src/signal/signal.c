@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:00:09 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 20:00:48 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 07:57:02 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	run_signals(void)
 	signal(SIGINT, ft_ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
 }
+
 void	set_interactive_mode(int set)
 {
 	if (set == 1)

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 07:49:31 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 09:07:27 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,32 @@ typedef enum type
 	UNASIGNED
 }	e_redirection_type;
 
-typedef struct s_redirection t_redirection;
-typedef struct s_redirection{
-
-	char *content_to_expand;
-	e_redirection_type redirection_type;
-	t_redirection *next;	
+typedef struct s_redirection	t_redirection;
+typedef struct s_redirection
+{
+	char				*content_to_expand;
+	e_redirection_type	redirection_type;
+	t_redirection		*next;	
 }	t_redirection;
 
-typedef struct s_argument t_argument;
-typedef struct s_argument{
-
-	char *content_to_expand;
-	t_argument *next;	
+typedef struct s_argument		t_argument;
+typedef struct s_argument
+{
+	char				*content_to_expand;
+	t_argument			*next;	
 }	t_argument;
 
-typedef struct s_segment t_segment;
-typedef struct s_segment{
-	
-	t_argument *arguments;
-	t_redirection *redirections;
-	t_segment *next;	
+typedef struct s_segment		t_segment;
+typedef struct s_segment
+{
+	t_argument			*arguments;
+	t_redirection		*redirections;
+	t_segment			*next;	
 }	t_segment;
 
 typedef struct s_command_line
 {
-	t_segment *segments;
-		
+	t_segment			*segments;
 }	t_command_line;
 
 typedef struct s_vars
@@ -125,6 +124,7 @@ char							*copy(char *s);
 void							*ft_memset(void *s, int c, size_t n);
 char							*ft_strdup(const char *s);
 void							*ft_calloc(size_t nmemb, size_t size);
+int								ft_strcspn(const char *s, char *reject);
 
 t_env							*ft_lstnew_env(void);
 void							ft_lstadd_back_env(t_env **lst, t_env *new);
@@ -136,7 +136,6 @@ void							ft_lstclear_env(t_env **lst);
 
 char							*ft_strjoin(char const *s1, char *s2);
 char							*ft_strjoin_mod(char *s1, char *s2);
-
 
 /*
 * Init 
@@ -152,16 +151,14 @@ t_command_line					*initialize_command_line(void);
 * free
 */
 
-
 void							free_exit(t_env **env, t_vars *vars);
-
+void							free_arguments(t_argument *argument);
+void							free_redirections(t_redirection *redirection);
+void							free_segments(t_segment *segment);
+void							free_command_line(t_command_line *command_line);
 /*
 * Test utils
 */
 
 void							print_linked_lst_env(t_env *env);
-
-
-
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:51:50 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/16 18:52:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 09:07:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,26 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (ptr)
 		ft_memset(ptr, '\0', nmemb * size);
 	return (ptr);
+}
+
+int		ft_strcspn(const char *s, char *reject)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+	{
+		j = 0;
+		while (reject[j] != '\0')
+		{
+			if (s[i] == reject[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
 }
