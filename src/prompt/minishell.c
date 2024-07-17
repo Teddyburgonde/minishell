@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 09:08:22 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 09:26:24 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int	g_sig = 0;
 // reprendre ft_strcspn 
 //! add function ft_strcspn finish !
 
-
 // ft_lstnew
 // ft_lstdel_one
 // ft_lstaddback
 // ft_lstlast ( si besoin )
 // ft_lstsize 
+
+
 // function print command_line
 
 static int	ft_readline(t_env **env, t_vars *vars)

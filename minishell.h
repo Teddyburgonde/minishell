@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 09:07:27 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/17 09:26:16 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ int								ft_strcspn(const char *s, char *reject);
 t_env							*ft_lstnew_env(void);
 void							ft_lstadd_back_env(t_env **lst, t_env *new);
 void							ft_lstclear_env(t_env **lst);
+t_redirection					*ft_lstnew_redirecion(char *content, e_redirection_type type);
+
 
 /*
 * Utils ft_strjoin
@@ -156,6 +158,7 @@ void							free_arguments(t_argument *argument);
 void							free_redirections(t_redirection *redirection);
 void							free_segments(t_segment *segment);
 void							free_command_line(t_command_line *command_line);
+
 /*
 * Test utils
 */

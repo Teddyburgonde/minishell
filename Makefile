@@ -14,7 +14,8 @@ MY_SOURCES= src/prompt/minishell.c \
 			utils/lstnew_env.c \
 			utils/lst_add_back.c \
 			utils/lstclear_env.c  \
-			utils/free.c 
+			utils/free.c \
+			utils/lst_new.c
 
 MY_SOURCES+= utils/test_utils.c  
 
