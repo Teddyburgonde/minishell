@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 20:20:19 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:01:33 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ int								ft_redirection_lstsize(t_redirection *lst);
 int								ft_argument_lstsize(t_argument *lst);
 int								ft_segment_lstsize(t_segment *lst);
 char							*skip_whitespace(char *str);
+char							*ft_substr(char const *s, unsigned int start, size_t len);
+int								ft_segment_lstsize(t_segment *lst);
+
 
 /*
 * Utils ft_strjoin
@@ -130,6 +133,13 @@ char							*skip_whitespace(char *str);
 
 char							*ft_strjoin(char const *s1, char *s2);
 char							*ft_strjoin_mod(char *s1, char *s2);
+
+/*
+* Parsing
+*/
+
+int								extract_line(char **remaining_line, char **extracted_line);
+int								get_redirection(t_command_data *command_data, t_segment *segment, char **remaining_line);
 
 /*
 * Init 

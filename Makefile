@@ -13,7 +13,11 @@ MY_SOURCES= src/prompt/minishell.c \
 			utils/lstnew_env.c \
 			utils/lst_add_back.c \
 			utils/lstclear_env.c  \
-			utils/lst_new.c 
+			utils/lst_new.c	\
+			utils/lst_size.c \
+			src/parsing/parse_redirection.c	\
+			src/parsing/parsing_utils.c	\
+
 
 MY_SOURCES+= utils/test_utils.c  
 
