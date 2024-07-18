@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:16:43 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/18 17:36:14 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:56:19 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,17 @@ static int	extract_line_until_next_separator(char **remaining_line, char **extra
 
 int	extract_line(char **remaining_line, char **extracted_line)
 {
-	if (*remaining_line[0] == '\'')
-	{
-		printf("simple quote\n");
-		// function extract_line_until_next_simple_quote
-		// if error, return 1;
-	}
-	else if (*remaining_line[0] == '\"')
-	{
-		printf("double quote\n");
-		// function extract_line_until_next_double_quote
-		// if error, return 1;
-		
-	}
-	else 
-	{
-		extract_line_until_next_separator(remaining_line, extracted_line);
-		// if error, return 1;
-	}
+	/*
+	
+	while char is not separator
+{
+	if quote
+		skip all chars inside the current quote (either simple or double)
+	i++
+}
+if (i == 0)
+	error syntax
+substr(remaining_line, 0, i); 
+	*/
 	return (0);
 }
