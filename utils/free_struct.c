@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:02:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/18 18:32:46 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:13:12 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    free_arguments_struct(t_argument *argument)
 	
 	while (ft_argument_lstsize(argument))
 	{
-		argument = argument->next;
+		tmp = argument->next;
 		if (argument->content_to_expand != NULL)
 			free(argument->content_to_expand);
 		free(argument);
