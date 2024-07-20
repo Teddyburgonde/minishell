@@ -1,22 +1,23 @@
 NAME=minishell
 
-MY_SOURCES= src/prompt/minishell.c \
-			src/signal/signal.c \
-			src/init/init_env.c \
-			src/init/update_shlvl.c \
-			src/parsing/parse_command_line.c \
-			utils/free_struct.c \
-			utils/utils.c \
-			utils/utils_two.c \
-			utils/print.c \
-			utils/ft_strjoin_utils.c \
-			utils/lstnew_env.c \
-			utils/lst_add_back.c \
-			utils/lstclear_env.c  \
-			utils/lst_new.c	\
-			utils/lst_size.c \
-			src/parsing/parse_redirection.c	\
-			src/parsing/parsing_utils.c	\
+MY_SOURCES= src/prompt/minishell.c				\
+			utils/utils.c 						\
+			utils/print.c 						\
+			utils/lst_new.c						\
+			utils/lst_size.c 					\
+			utils/utils_two.c 					\
+			utils/lstnew_env.c 					\
+			src/signal/signal.c					\
+			utils/free_struct.c 				\
+			src/init/init_env.c					\
+			utils/lst_add_back.c 				\
+			utils/lstclear_env.c  				\
+			src/init/update_shlvl.c				\
+			utils/ft_strjoin_utils.c 			\
+			src/parsing/parsing_utils.c			\
+			src/parsing/expand_arguments.c		\
+			src/parsing/parse_redirection.c		\
+			src/parsing/parse_command_line.c	\
 
 
 MY_SOURCES+= utils/test_utils.c  

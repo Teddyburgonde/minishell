@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/20 15:41:44 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:51:35 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ char							*ft_strjoin_mod(char *s1, char *s2);
 
 int								extract_line(char **remaining_line, char **extracted_line);
 int								get_redirection(t_command_data *command_data, t_segment *segment, char **remaining_line);
+void							expand(t_command_data *command_data);
 
 /*
 * Init 
@@ -169,5 +170,6 @@ void							free_command_data_struct(t_command_data *command_data);
 
 void							print_linked_lst_env(t_env *env);
 void							ft_native_lst_print(t_command_data command_data, int fd);
+void							ft_expanded_lst_print(t_command_data *command_data, int fd);
 
 #endif

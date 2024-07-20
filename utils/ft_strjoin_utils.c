@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:31:47 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/20 15:33:39 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 19:03:05 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static char	*ft_strcpy(char *dest, char *src)
+/*static char	*ft_strcpy(char *dest, char *src)
 {
 	int i;
 
@@ -24,7 +24,7 @@ static char	*ft_strcpy(char *dest, char *src)
 	}
 	dest[i] = '\0';
 	return (dest);
-}
+}*/
 
 char	*ft_strjoin_dup(char *s1, char *s2)
 {
@@ -41,13 +41,13 @@ char	*ft_strjoin_dup(char *s1, char *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	tab = ft_strcpy(tab, s1);
-	while (s2 && s2[j])
+	while (s1 && s1[i])
 	{
-		tab[i] = s2[j];
-		j++;
+		tab[i] = s1[i];
 		i++;
 	}
+	while (s2 && s2[j])
+		tab[i++] = s2[j++];
 	tab[i] = 0;
 	free(s1);
 	free(s2);

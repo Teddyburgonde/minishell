@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:38:34 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 20:07:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:49:10 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,40 @@ t_argument	*ft_lst_last3(t_argument *head)
 	return (last_element);
 }
 
+t_redirection	*ft_lst_last4(t_redirection *head)
+{
+	t_redirection	*last_element;
+
+	if (!head)
+		return (NULL);
+	if (!head->next)
+		last_element = head;
+	else
+	{
+		last_element = head;
+		while (last_element->next)
+			last_element = last_element->next;
+	}
+	return (last_element);
+}
+
+t_argument	*ft_lst_last5(t_argument *head)
+{
+	t_argument	*last_element;
+
+	if (!head)
+		return (NULL);
+	if (!head->next)
+		last_element = head;
+	else
+	{
+		last_element = head;
+		while (last_element->next)
+			last_element = last_element->next;
+	}
+	return (last_element);
+}
+
 size_t	ft_lst_size1(t_segment *head)
 {
 	size_t		len;
@@ -123,6 +157,44 @@ size_t	ft_lst_size3(t_argument *head)
 	if (!head)
 		return (0);
 	last_element = ft_lst_last3(head);
+	if (last_element == head)
+		return (1);
+	while (head != last_element)
+	{
+		head = head->next;
+		len++;
+	}
+	return (len);
+}
+
+size_t	ft_lst_size4(t_redirection *head)
+{
+	size_t					len;
+	t_redirection	*last_element;
+
+	len = 1;
+	if (!head)
+		return (0);
+	last_element = ft_lst_last4(head);
+	if (last_element == head)
+		return (1);
+	while (head != last_element)
+	{
+		head = head->next;
+		len++;
+	}
+	return (len);
+}
+
+size_t	ft_lst_size5(t_argument *head)
+{
+	size_t				len;
+	t_argument	*last_element;
+
+	len = 1;
+	if (!head)
+		return (0);
+	last_element = ft_lst_last5(head);
 	if (last_element == head)
 		return (1);
 	while (head != last_element)
@@ -223,46 +295,46 @@ void	ft_native_lst_print(t_command_data command_data, int fd)
 	}
 }
 
-/*void	ft_expanded_lst_print(t_command_line *command_line, int fd)
+ void	ft_expanded_lst_print(t_command_data *command_data, int fd)
 {
 	size_t					i;
 	size_t					j;
-	t_substring				*tmp1;
-	t_expanded_redirection	*tmp2;
-	t_expanded_argument		*tmp3;
+	t_segment				*tmp1;
+	t_redirection	*tmp2;
+	t_argument		*tmp3;
 
 	i = 0;
-	tmp1 = command_line->substrings;
-	while (command_line->substrings && i < ft_lst_size1(command_line->substrings))
+	tmp1 = command_data->segments;
+	while (command_data->segments && i < ft_lst_size1(command_data->segments))
 	{
-		ft_putstr_fd("substring ", fd);
+		ft_putstr_fd("segment ", fd);
 		ft_putnbr_fd(i, fd);
 		ft_putstr_fd(" : \n", fd);
 		j = 0;
-		tmp2 = tmp1->exp_redirections;
-		while (tmp1->exp_redirections && j < ft_lst_size4(tmp1->exp_redirections))
+		tmp2 = tmp1->redirections;
+		while (tmp1->redirections && j < ft_lst_size4(tmp1->redirections))
 		{
 			ft_putstr_fd("\t-exp_redirection ", fd);
 			ft_putnbr_fd(j, fd);
 			ft_putstr_fd(" : \t", fd);
-			ft_putstr_fd(tmp2->content, fd);
+			ft_putstr_fd(tmp2->expanded_content, fd);
 			ft_putstr_fd("\n", fd);
 			ft_putstr_fd("\t-exp_redirection_type ", fd);
 			ft_putnbr_fd(j, fd);
 			ft_putstr_fd(" : \t", fd);
-			print_e_redirection (tmp2->e_redirection, fd);
+			print_e_redirection (tmp2->redirection_type, fd);
 			ft_putstr_fd("\n", fd);
 			tmp2 = tmp2->next;
 			j++;
 		}
 		j = 0;
-		tmp3 = tmp1->exp_arguments;
-		while (tmp1->exp_arguments && j < ft_lst_size5(tmp1->exp_arguments))
+		tmp3 = tmp1->arguments;
+		while (tmp1->arguments && j < ft_lst_size5(tmp1->arguments))
 		{
 			ft_putstr_fd("\t-exp_argument ", fd);
 			ft_putnbr_fd(j, fd);
 			ft_putstr_fd(" : ", fd);
-			ft_putstr_fd(tmp3->content, fd);
+			ft_putstr_fd(tmp3->expanded_content, fd);
 			ft_putstr_fd("\n", fd);
 			tmp3 = tmp3->next;
 			j++;
@@ -273,7 +345,7 @@ void	ft_native_lst_print(t_command_data command_data, int fd)
 	}
 }
 
-void	ft_execution_lst_print(t_exec_struct *exec_struct, int fd)
+/*void	ft_execution_lst_print(t_exec_struct *exec_struct, int fd)
 {
 	size_t				i;
 	size_t				j;
