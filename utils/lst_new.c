@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 09:14:23 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/17 20:16:11 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:04:38 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_redirection	*ft_lstnew_redirection(char *content, e_redirection_type type)
 		return (NULL);
 	new_node->content_to_expand = content;
     new_node->redirection_type = type;
+	new_node->expanded_content = NULL;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -46,6 +47,7 @@ t_argument	*ft_lstnew_argument(char *content)
 	if (!new_node)
 		return (NULL);
 	new_node->content_to_expand = content;
+	new_node->expanded_content = NULL;
 	new_node->next = NULL;
 	return (new_node);
 }

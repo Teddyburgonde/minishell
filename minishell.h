@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/18 18:01:33 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:41:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/wait.h>
 # include <limits.h>
 # include <string.h>
+# include <stdbool.h>
 
 /*
 * Global variables
@@ -54,6 +55,7 @@ typedef struct s_redirection	t_redirection;
 typedef struct s_redirection
 {
 	char				*content_to_expand;
+	char				*expanded_content;
 	e_redirection_type	redirection_type;
 	t_redirection		*next;	
 }	t_redirection;
@@ -62,6 +64,7 @@ typedef struct s_argument		t_argument;
 typedef struct s_argument
 {
 	char				*content_to_expand;
+	char				*expanded_content;
 	t_argument			*next;	
 }	t_argument;
 
@@ -80,8 +83,7 @@ typedef struct s_command_data
 	t_segment			*segments;
 }	t_command_data;
 
-
-void 							parse_command_line(t_command_data *command_data, char *line);
+int 							parse_command_line(t_command_data *command_data, char *line);
 
 /*
 * Env
@@ -131,6 +133,7 @@ int								ft_segment_lstsize(t_segment *lst);
 * Utils ft_strjoin
 */
 
+char							*ft_strjoin_dup(char *s1, char *s2);
 char							*ft_strjoin(char const *s1, char *s2);
 char							*ft_strjoin_mod(char *s1, char *s2);
 

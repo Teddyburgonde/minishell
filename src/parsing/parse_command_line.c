@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:40:03 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/19 18:07:29 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 14:25:12 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,42 @@ int	get_argument(t_command_data *command_data, t_segment *segment, char **remain
 	return (0);
 }
 
-void parse_command_line(t_command_data *command_data, char *line)
+int	ft_isspace(int c)
+{
+	if ((c >= 9 && c <= 13) || c == ' ' || c == '\n')
+		return (1);
+	return (0);
+}
+
+bool	is_pipe_last_char(char **remaining_line)
+{
+	if (remaining_line[0][0] == '|')
+	{
+		(*remaining_line)++;
+		while (remaining_line[0][0])
+		{
+			if (ft_isspace(remaining_line[0][0]) == 0)
+				return (false);
+			(*remaining_line)++;
+		}
+	}
+	else 
+		return (false);
+	return (true);
+}
+
+int parse_command_line(t_command_data *command_data, char *line)
 {
 	t_segment   *segment;
 	char		*remaining_line;
 
 	remaining_line = skip_whitespace(line);
+	if (remaining_line[0] == '|')
+	{
+		ft_putstr_fd("Syntax error\n", 2);
+		command_data->exit_code = 2;
+		return (1);
+	}
 	while (*remaining_line)
 	{
 		segment = ft_lstnew_segment();
@@ -70,22 +100,22 @@ void parse_command_line(t_command_data *command_data, char *line)
 			if (*remaining_line == '<' || *remaining_line == '>')
 			{
 				if (get_redirection(command_data, segment, &remaining_line) != 0)
-				{
-					// function all free
-					return ; 
-				}
+					return (1); 
 			}
 			else
 			{
 				if (get_argument(command_data, segment, &remaining_line) != 0)
-				{
-					// function to free everything
-					return ;
-				}
+					return (1);
 			}
 			remaining_line = skip_whitespace(remaining_line);
 		}
+		if (is_pipe_last_char(&remaining_line) == true)
+		{
+			ft_putstr_fd("Syntax error\n", 2);
+			command_data->exit_code = 2;
+			return (1);
+		}
 		remaining_line = skip_whitespace(remaining_line);
-		ft_native_lst_print(*command_data, 2);
 	}
+	return (0);
 }

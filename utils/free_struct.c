@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:02:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/19 18:13:12 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 10:56:18 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,6 @@ void	free_segments_struct(t_segment *segment)
 		segment = tmp;
 	}
 }
-
-/*void	free_segments_struct(t_segment *segment)
-{
-	t_segment *tmp;
-
-	while (segment != NULL)
-	{
-		tmp = segment;
-		segment = segment->next;
-		if (tmp->arguments != NULL)
-			free_arguments_struct(tmp->arguments);
-		if (tmp->redirections != NULL)
-			free_redirections_struct(tmp->redirections);
-		free(tmp);
-	}
-}*/
 
 void    free_command_data_struct(t_command_data *command_data)
 {

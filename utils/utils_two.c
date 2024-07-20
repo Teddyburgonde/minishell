@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:51:50 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/18 17:17:51 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/20 11:16:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,7 @@ int		ft_strcspn(const char *s, char *reject)
 char	*skip_whitespace(char *str)
 {
 	while (str && ((*str >= 9 && *str <= 13) || *str == 32 || *str == '\n'))
-	{
 		str++;
-	}
 	return (str);
 }
 
