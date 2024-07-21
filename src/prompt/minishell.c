@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/21 16:28:54 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:46:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	g_sig = 0;
 
 static void	ft_readline(t_command_data *command_data)
 {
-	char							*line;
+	char	*line;
 
 	while (1)
 	{

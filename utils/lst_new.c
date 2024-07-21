@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 09:14:23 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/20 15:04:38 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:05:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_segment *ft_lstnew_segment(void)
     return (new_segment);
 }
 
-t_redirection	*ft_lstnew_redirection(char *content, e_redirection_type type)
+t_redirection	*ft_lstnew_redirection(char *content, t_redirection_type type)
 {
 	t_redirection	*new_node;
 

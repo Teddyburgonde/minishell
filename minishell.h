@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/21 15:39:14 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:06:13 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 
 extern int	g_sig;
 
-typedef enum type
+typedef enum s_type
 {
 	REDIRECTION_OUTFILE,
 	REDIRECTION_INFILE,
 	REDIRECTION_APPEND,
 	REDIRECTION_HEREDOC,
 	UNASIGNED
-}	e_redirection_type;
+}	t_redirection_type;
 
 typedef struct s_env
 {
@@ -51,30 +51,26 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-
-typedef struct s_redirection	t_redirection;
 typedef struct s_redirection
 {
-	char				*content_to_expand;
-	char				*expanded_content;
-	e_redirection_type	redirection_type;
-	t_redirection		*next;	
+	char					*content_to_expand;
+	char					*expanded_content;
+	t_redirection_type		redirection_type;
+	struct s_redirection	*next;	
 }	t_redirection;
 
-typedef struct s_argument		t_argument;
 typedef struct s_argument
 {
-	char				*content_to_expand;
-	char				*expanded_content;
-	t_argument			*next;	
+	char					*content_to_expand;
+	char					*expanded_content;
+	struct s_argument		*next;	
 }	t_argument;
 
-typedef struct s_segment		t_segment;
 typedef struct s_segment
 {
 	t_argument			*arguments;
 	t_redirection		*redirections;
-	t_segment			*next;	
+	struct s_segment	*next;	
 }	t_segment;
 
 typedef struct s_command_data
@@ -84,94 +80,98 @@ typedef struct s_command_data
 	t_segment			*segments;
 }	t_command_data;
 
-int 							parse_command_line(t_command_data *command_data, char *line);
-
 /*
 * Env
 */
 
-int								init_env(t_env **env, char **envp);
+int					init_env(t_env **env, char **envp);
 
 /*
 * Signal
 */
 
-void							run_signals(void);
-void							ft_ctrl_c(int signal);
-void							set_interactive_mode(int set);
+void				run_signals(void);
+void				ft_ctrl_c(int signal);
+void				set_interactive_mode(int set);
 
 /*
 * Utils
 */
 
-int								ft_isspace(int c);
-void							ft_putstr_fd(char *s, int fd);
-int								ft_strcmp(char *s1, char *s2);
-int								ft_atoi(const char *str);
-int								ft_strlen(char const *str);
-char							*copy(char *s);
-void							*ft_memset(void *s, int c, size_t n);
-char							*ft_strdup(const char *s);
-void							*ft_calloc(size_t nmemb, size_t size);
-int								ft_strcspn(const char *s, char *reject);
-t_env							*ft_lstnew_env(void);
-void							ft_lstadd_back_env(t_env **head, t_env *new_element);
-void							ft_lstclear_env(t_env **lst);
-t_redirection					*ft_lstnew_redirection(char *content, e_redirection_type type);
-t_segment						*ft_lstnew_segment(void);
-t_argument						*ft_lstnew_argument(char *content);
-void							ft_lstadd_back_segment(t_segment **head, t_segment *new_element);
-void							ft_lstadd_back_redirection(t_redirection **head, t_redirection *new_element);
-void							ft_lstadd_back_argument(t_argument **head, t_argument *new_element);
-int								ft_redirection_lstsize(t_redirection *lst);
-int								ft_argument_lstsize(t_argument *lst);
-int								ft_segment_lstsize(t_segment *lst);
-char							*skip_whitespace(char *str);
-char							*ft_substr(char const *s, unsigned int start, size_t len);
-int								ft_segment_lstsize(t_segment *lst);
-
+int					ft_isspace(int c);
+void				ft_putstr_fd(char *s, int fd);
+int					ft_strcmp(char *s1, char *s2);
+int					ft_atoi(const char *str);
+int					ft_strlen(char const *str);
+char				*copy(char *s);
+void				*ft_memset(void *s, int c, size_t n);
+char				*ft_strdup(const char *s);
+void				*ft_calloc(size_t nmemb, size_t size);
+int					ft_strcspn(const char *s, char *reject);
+t_env				*ft_lstnew_env(void);
+void				ft_lstadd_back_env(t_env **head, t_env *new_element);
+void				ft_lstclear_env(t_env **lst);
+t_redirection		*ft_lstnew_redirection(char *content,
+						t_redirection_type type);
+t_segment			*ft_lstnew_segment(void);
+t_argument			*ft_lstnew_argument(char *content);
+void				ft_lstadd_back_segment(t_segment **head,
+						t_segment *new_element);
+void				ft_lstadd_back_redirection(t_redirection **head,
+						t_redirection *new_element);
+void				ft_lstadd_back_argument(t_argument **head,
+						t_argument *new_element);
+int					ft_redirection_lstsize(t_redirection *lst);
+int					ft_argument_lstsize(t_argument *lst);
+int					ft_segment_lstsize(t_segment *lst);
+char				*skip_whitespace(char *str);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+int					ft_segment_lstsize(t_segment *lst);
 
 /*
 * Utils ft_strjoin
 */
 
-char							*ft_strjoin_dup(char *s1, char *s2);
-char							*ft_strjoin(char const *s1, char *s2);
-char							*ft_strjoin_mod(char *s1, char *s2);
+char				*ft_strjoin_dup(char *s1, char *s2);
+char				*ft_strjoin(char const *s1, char *s2);
+char				*ft_strjoin_mod(char *s1, char *s2);
 
 /*
 * Parsing
 */
 
-int								extract_line(char **remaining_line, char **extracted_line);
-int								get_redirection(t_command_data *command_data, t_segment *segment, char **remaining_line);
-int								expand(t_command_data *command_data);
+int					extract_line(char **remaining_line, char **extracted_line);
+int					get_redirection(t_command_data *command_data,
+						t_segment *segment, char **remaining_line);
+int					expand(t_command_data *command_data);
+int					parse_command_line(t_command_data *command_data,
+						char *line);
 
 /*
 * Init 
 */
 
-char							*update_shlvl(int shlvl);
-t_redirection					*initialize_redirection(void);
-t_argument      				*initialize_argument(void);
-t_segment						*initialize_segment(void);
-t_command_data					*initialize_command_data(void);
+char				*update_shlvl(int shlvl);
+t_redirection		*initialize_redirection(void);
+t_argument			*initialize_argument(void);
+t_segment			*initialize_segment(void);
+t_command_data		*initialize_command_data(void);
 
 /*
 * free
 */
 
-void    						free_arguments_struct(t_argument *argument);
-void							free_redirections_struct(t_redirection *redirection);
-void							free_segments_struct(t_segment *segment);
-void							free_command_data_struct(t_command_data *command_data);
+void				free_arguments_struct(t_argument *argument);
+void				free_redirections_struct(t_redirection *redirection);
+void				free_segments_struct(t_segment *segment);
+void				free_command_data_struct(t_command_data *command_data);
 
 /*
 * Test utils
 */
 
-void							print_linked_lst_env(t_env *env);
-void							ft_native_lst_print(t_command_data command_data, int fd);
-void							ft_expanded_lst_print(t_command_data *command_data, int fd);
+void				print_linked_lst_env(t_env *env);
+void				ft_native_lst_print(t_command_data command_data, int fd);
+void				ft_expanded_lst_print(t_command_data *command_data, int fd);
 
 #endif
