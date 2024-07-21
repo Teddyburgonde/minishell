@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/21 17:06:13 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/21 19:19:02 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_redirection
 {
 	char					*content_to_expand;
 	char					*expanded_content;
+	int						fd;
 	t_redirection_type		redirection_type;
 	struct s_redirection	*next;	
 }	t_redirection;
