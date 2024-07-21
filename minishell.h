@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/20 18:51:35 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:39:14 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@
 
 extern int	g_sig;
 
+typedef enum type
+{
+	REDIRECTION_OUTFILE,
+	REDIRECTION_INFILE,
+	REDIRECTION_APPEND,
+	REDIRECTION_HEREDOC,
+	UNASIGNED
+}	e_redirection_type;
+
 typedef struct s_env
 {
 	char			*env_name;
@@ -42,14 +51,6 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef enum type
-{
-	REDIRECTION_OUTFILE,
-	REDIRECTION_INFILE,
-	REDIRECTION_APPEND,
-	REDIRECTION_HEREDOC,
-	UNASIGNED
-}	e_redirection_type;
 
 typedef struct s_redirection	t_redirection;
 typedef struct s_redirection
@@ -103,6 +104,7 @@ void							set_interactive_mode(int set);
 * Utils
 */
 
+int								ft_isspace(int c);
 void							ft_putstr_fd(char *s, int fd);
 int								ft_strcmp(char *s1, char *s2);
 int								ft_atoi(const char *str);
@@ -143,7 +145,7 @@ char							*ft_strjoin_mod(char *s1, char *s2);
 
 int								extract_line(char **remaining_line, char **extracted_line);
 int								get_redirection(t_command_data *command_data, t_segment *segment, char **remaining_line);
-void							expand(t_command_data *command_data);
+int								expand(t_command_data *command_data);
 
 /*
 * Init 

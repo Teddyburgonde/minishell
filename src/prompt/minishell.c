@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/20 18:52:30 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:28:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,17 @@ static void	ft_readline(t_command_data *command_data)
 		if (parse_command_line(command_data, line) == 1)
 		{
 			free_segments_struct(command_data->segments);
+			command_data->segments = NULL;
 			free(line);
 			continue ;
 		}
-		expand(command_data);
+		if (expand(command_data))
+		{
+			free_segments_struct(command_data->segments);
+			command_data->segments = NULL;
+			free(line);
+			continue ;
+		}
 		free(line);
 		ft_native_lst_print(*command_data, 2);
 		ft_expanded_lst_print(command_data, 2);
