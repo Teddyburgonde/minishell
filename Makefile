@@ -18,6 +18,7 @@ MY_SOURCES= src/prompt/minishell.c				\
 			src/parsing/expand_arguments.c		\
 			src/parsing/parse_redirection.c		\
 			src/parsing/parse_command_line.c	\
+			src/redirections/manage_redirections.c \
 
 
 MY_SOURCES+= utils/test_utils.c  

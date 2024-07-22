@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:06:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/21 19:19:02 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:43:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,15 @@ int					ft_segment_lstsize(t_segment *lst);
 char				*skip_whitespace(char *str);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_segment_lstsize(t_segment *lst);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+
+
+/*
+* Redirection 
+*/
+
+int					manage_redirections(t_command_data *command_data);
+
 
 /*
 * Utils ft_strjoin

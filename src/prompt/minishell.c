@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:23:17 by tebandam          #+#    #+#             */
-/*   Updated: 2024/07/22 09:19:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:56:53 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ static void	ft_readline(t_command_data *command_data)
 			continue ;
 		}
 		free(line);
+		manage_redirections(command_data);
 		ft_native_lst_print(*command_data, 2);
 		ft_expanded_lst_print(command_data, 2);
+		// test
 		free_segments_struct(command_data->segments);
 		command_data->segments = NULL;
 	}
